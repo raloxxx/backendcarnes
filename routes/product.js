@@ -1,5 +1,5 @@
 var express = require('express');
-var Product = require('../models/prduct');
+var Product = require('../models/product');
 
 var app = express();
 
@@ -27,15 +27,37 @@ app
                 }
             )
     })
+    .get('/:id', (req, res) => {
+
+        console.log("no llega pe")
+        let id = req.params.id;
+        Product.findById(id)
+            .exec(
+                (err, producto) => {
+                    if(err){
+                        res.status(500).json({
+                            ok: false,
+                            mensaje: 'Error cargando producto',
+                            errors: err
+                        })
+                    }
+
+                   
+                    res.status(200).json({
+                        ok: true,
+                        producto: producto
+                    })
+                }
+            )
+    })
     .post('/', (req, res) => {
         var body = req.body;
-
-        console.log(req.body);
 
         var product = new Product({
             codigo: body.codigo,
             detalle: body.detalle ,
-            precio_kilo: body.precio_kilo ,
+            precio_kilo_mayor: body.precio_kilo_mayor,
+            precio_kilo_menor: body.precio_kilo_menor,
             peso: body.peso 
         });
 

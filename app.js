@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // Importar Rutas
 var routerZone = require('./routes/zone');
 var routerClient = require('./routes/client');
-var routerProduct = require('./models/product')
+var routerProduct = require('./routes/product')
 
 
 // Conexion a la base de datos
