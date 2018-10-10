@@ -18,12 +18,13 @@ app.use(bodyParser.json());
 // Importar Rutas
 var routerZone = require('./routes/zone');
 var routerClient = require('./routes/client');
-var routerProduct = require('./routes/product')
+var routerProduct = require('./routes/product');
+var routerSale = require('./routes/sale');
 
 
 // Conexion a la base de datos
 
-mongoose.connection.openUri('mongodb://localhost:27017/DBventas', (err, res) => {
+mongoose.connection.openUri('mongodb://carnesmaldonado:carnes_12345_12345@ds125453.mlab.com:25453/carnesmaldonadodb', (err, res) => {
 
     if (err) throw err;
 
@@ -35,6 +36,7 @@ mongoose.connection.openUri('mongodb://localhost:27017/DBventas', (err, res) => 
 app.use('/zone', routerZone);
 app.use('/client', routerClient);
 app.use('/product', routerProduct);
+app.use('/sale', routerSale);
 
 
 
